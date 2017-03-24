@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Panoramic gallery</title>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous">
+  	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+
+  	<!-- panellum cdn. not always work
+  	<script src="https://cdn.pannellum.org/2.3/pannellum.js"></script>
+	<link rel="stylesheet" href="https://cdn.pannellum.org/2.3/pannellum.css">
+	-->
+
+	<script src="public/panellum/pannellum.js"></script>
+	<link rel="stylesheet" href="public/panellum/pannellum.css">
+
+	<link rel="stylesheet" href="public/css/styles.min.css">
+</head>
+<body> 
+    <script src="public/js/panoramicgallery.js"></script>
+    <script>
+      var dir = window.location.search.substr(1).split("=")[1];
+      panoramicgallery.createGallery(dir || 'test_images');
+    </script>
+</body>
+</html>

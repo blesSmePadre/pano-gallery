@@ -1,144 +1,146 @@
 const createGallery = (imagesUrl) => {
 		
-		const getURLParameter = (param) => {
-		    var url = window.location.search.substring(1);
-		    var urlVariables = url.split('&');
-		    for (var i = 0; i < urlVariables.length; i++) {
-		    	var _param = urlVariables[i].split('=');
-		    	if (_param[0] == param)
-            return _param[1];
-		    }
-		}
+	const getURLParameter = (param) => {
+    var url = window.location.search.substring(1);
+    var urlVariables = url.split('&');
+    for (var i = 0; i < urlVariables.length; i++) {
+    	var _param = urlVariables[i].split('=');
+    	if (_param[0] == param)
+    return _param[1];
+    }
+	}
 
-		const isGalleryInFullScreenMode = () => {
+	const isGalleryInFullScreenMode = () => {
       return $('.lg-outer').hasClass('lg-fullscreen-on');
-    }
+  }
 
-    const panoramaShow = () => {
-      if(isGalleryInFullScreenMode())
-        $('.panorama-fullscreen').toggleClass('panorama-fullscreen-active');
-      	$('#panorama').css({'z-index':'1065'});
-				$('#panorama').animate({
-	  			'opacity': 1
-	      	 }, {
-	      	 	duration: 1000
-	      	 }   	 
-		  	);
-    }
+  const panoramaShow = () => {
+    if(isGalleryInFullScreenMode())
+      $('.panorama-fullscreen').toggleClass('panorama-fullscreen-active');
+    	$('#panorama').css({'z-index':'1065'});
+			$('#panorama').animate({
+  			'opacity': 1
+      	 }, {
+      	 	duration: 1000
+      	 }   	 
+	  	);
+  }
 
-    const panoramaHide = () => {
-      $('#panorama').animate({
-	  			'opacity': 0
-	      	 }, {
-	      	 	duration: 1000,
-	      	 	complete: function() {
-      	 			$(this).css({'z-index':'1045'})
-	      	 	}   	
-	      	 }  	  
-		  	);
-    }
+  const panoramaHide = () => {
+    $('#panorama').animate({
+  			'opacity': 0
+      	 }, {
+      	 	duration: 1000,
+      	 	complete: function() {
+    	 			$(this).css({'z-index':'1045'})
+      	 	}   	
+      	 }  	  
+	  	);
+  }
 
-    const drawCircleButton = (element) => {
-    	if (!element)
-    		return;
-    	var mainCanvas = element;
-		 	var mainContext = mainCanvas.getContext('2d');
-	 		var canvasHeight = mainCanvas.height;
-	 		var canvasWidth = mainCanvas.width;
-	 		var center = [canvasHeight/2, canvasWidth/2];
-			mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
+  const drawCircleButton = (element) => {
+  	if (!element)
+  		return;
+  	var mainCanvas = element;
+	 	var mainContext = mainCanvas.getContext('2d');
+ 		var canvasHeight = mainCanvas.height;
+ 		var canvasWidth = mainCanvas.width;
+ 		var center = [canvasHeight/2, canvasWidth/2];
+		mainContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
-				/* first */
-	 		var radius = 45;
-	 		mainContext.beginPath();
-	 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
-	 		mainContext.strokeStyle = "#ffffff";
-	 		mainContext.lineWidth = 5;
-	 		mainContext.stroke();
-	 		mainContext.closePath();
-	 		/* first */
+			/* first */
+ 		var radius = 45;
+ 		mainContext.beginPath();
+ 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
+ 		mainContext.strokeStyle = "#ffffff";
+ 		mainContext.lineWidth = 5;
+ 		mainContext.stroke();
+ 		mainContext.closePath();
+ 		/* first */
 
-	 		/*second*/
-			mainContext.beginPath();
-	 		var radius = 30;
-	 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
-	 		mainContext.closePath();
-	 		mainContext.strokeStyle = "#ffffff";
-	 		mainContext.lineWidth = 3;
-	 		mainContext.stroke();
-	 		mainContext.closePath();
-	 		/*second*/
+ 		/*second*/
+		mainContext.beginPath();
+ 		var radius = 30;
+ 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
+ 		mainContext.closePath();
+ 		mainContext.strokeStyle = "#ffffff";
+ 		mainContext.lineWidth = 3;
+ 		mainContext.stroke();
+ 		mainContext.closePath();
+ 		/*second*/
 
-	 		/*third*/
-			mainContext.beginPath();
-	 		var radius = 15;
-	 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
-	 		mainContext.closePath();
-	 		mainContext.strokeStyle = "#ffffff";
-	 		mainContext.lineWidth = 3;
-	 		mainContext.stroke();
-	 		mainContext.closePath();
-	 		/*third*/
+ 		/*third*/
+		mainContext.beginPath();
+ 		var radius = 15;
+ 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
+ 		mainContext.closePath();
+ 		mainContext.strokeStyle = "#ffffff";
+ 		mainContext.lineWidth = 3;
+ 		mainContext.stroke();
+ 		mainContext.closePath();
+ 		/*third*/
 
-	 		/*last*/
-			mainContext.beginPath();
-	 		var radius = 5;
-	 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
-	 		mainContext.closePath();
-	 		mainContext.fillStyle = "#ffffff";
-	 		mainContext.fill();
-	 		mainContext.closePath();
-	 		/*last*/
-    }
-    /*
-    <a href="${pathsArray[3]}"
-      data-sub-html="<div class='panorama-button-in-container' id='panorama-button-in'>
-        <span class='panorama-button-in-circle'><span><span></span></span></span>
-        <span class='panorama-button-title' data-element-translate-key='panorama-button-in'/>
-      </div>"
-      data-panorama-src="${pathsArray[4]}">
-      <img src="${pathsArray[3]}" />
-    </a>
-    */
-    const createInitialGalleryMarkup = (pathsArray) => {
-    	return `<div id="lightgallery">
-		    <a href="${pathsArray[0]}">
-		      <img src="${pathsArray[0]}" />
-		    </a>
-		    <a href="${pathsArray[1]}">
-		      <img src="${pathsArray[1]}" />
-		    </a>
-		    <a href="${pathsArray[2]}">
-		      <img src="${pathsArray[2]}" />
-		    </a>
-		    <a href="${pathsArray[3]}"
-		      data-sub-html="<div class='panorama-button panorama-button-in'>
-		      		<canvas id='circleButtonIn' height='100' width='100'></canvas>
-		      		<span class='panorama-button-title' data-element-translate-key='panorama-button-in'></span>
-		      	</div>"
-		      data-panorama-src="${pathsArray[4]}">
-		      <img src="${pathsArray[3]}" />
-		    </a>
-		    <a href="${pathsArray[5]}">
-		      <img src="${pathsArray[5]}" />
-		    </a>
-		    <a href="${pathsArray[6]}">
-		      <img src="${pathsArray[6]}" />
-		    </a>
-		    <a href="${pathsArray[7]}">
-		      <img src="${pathsArray[7]}" />
-		    </a>
-		    <a href="${pathsArray[8]}">
-		      <img src="${pathsArray[8]}" />
-		    </a>
-		  </div>`
-    }
+ 		/*last*/
+		mainContext.beginPath();
+ 		var radius = 5;
+ 		mainContext.arc(center[0], center[1], radius, 0, Math.PI * 2, false);
+ 		mainContext.closePath();
+ 		mainContext.fillStyle = "#ffffff";
+ 		mainContext.fill();
+ 		mainContext.closePath();
+ 		/*last*/
+  }
+  /*
+  <a href="${pathsArray[3]}"
+    data-sub-html="<div class='panorama-button-in-container' id='panorama-button-in'>
+      <span class='panorama-button-in-circle'><span><span></span></span></span>
+      <span class='panorama-button-title' data-element-translate-key='panorama-button-in'/>
+    </div>"
+    data-panorama-src="${pathsArray[4]}">
+    <img src="${pathsArray[3]}" />
+  </a>
+  */
 
-    const changeElementsTextLanguage = (currentLanguage, elementTranslateKey) => {
-	  	$('[data-element-translate-key]').each((i, element) => {
+  /*data-sub-html="<div class='panorama-button panorama-button-in'>
+	      		<canvas id='circleButtonIn' height='100' width='100'></canvas>
+	      		<span class='panorama-button-title' data-element-translate-key='panorama-button-in'></span>
+	      	</div>"*/
+
+  const createInitialGalleryMarkup = (pathsArray) => {
+  	return `<div id="lightgallery">
+	    <a href="${pathsArray[0]}" data-html="<div id='test'></div>">
+	      <img src="${pathsArray[0]}" />
+	    </a>
+	    <a href="${pathsArray[1]}">
+	      <img src="${pathsArray[1]}" />
+	    </a>
+	    <a href="${pathsArray[2]}">
+	      <img src="${pathsArray[2]}" />
+	    </a>
+	    <a href="${pathsArray[3]}"  
+	      data-panorama-src="${pathsArray[4]}">
+	      <img src="${pathsArray[3]}" data-custom-item="true"/>
+	    </a>
+	    <a href="${pathsArray[5]}">
+	      <img src="${pathsArray[5]}" />
+	    </a>
+	    <a href="${pathsArray[6]}">
+	      <img src="${pathsArray[6]}" />
+	    </a>
+	    <a href="${pathsArray[7]}">
+	      <img src="${pathsArray[7]}" />
+	    </a>
+	    <a href="${pathsArray[8]}">
+	      <img src="${pathsArray[8]}" />
+	    </a>
+	  </div>`
+  }
+
+  const changeElementsTextLanguage = (currentLanguage, elementTranslateKey) => {
+  	$('[data-element-translate-key]').each((i, element) => {
 	    let $element = $(element);
 	    $element.text(dictionary[currentLanguage][$element.data('elementTranslateKey')]);
-	  });
+  	});
 	}
 
 	const dictionary = {
@@ -250,7 +252,6 @@ const createGallery = (imagesUrl) => {
 
 	let panoramaUrl = '';
 	let panoramaIndex = -1;
-	debugger;
 	let currentLanguage = getURLParameter('lang');
 	if (!currentLanguage)
 		currentLanguage = 'en';
@@ -298,7 +299,8 @@ const createGallery = (imagesUrl) => {
       hideBarsDelay: 600000,
       enableDrag: false,
       mode: 'lg-fade',
-      speed: 1000
+      speed: 1000,
+      //appendSubHtmlTo: '.lg-item'
     });
 
     $('#lightgallery').on('onAfterOpen.lg', () => {
@@ -397,27 +399,49 @@ const createGallery = (imagesUrl) => {
       });
     });
 
-    $('#lightgallery').on('onAfterAppendSubHtml.lg', () => {
-      if (panoramaUrl) {
-        $('#circleButtonIn').click(() => {
-          panoramaShow();
-        });
-        drawCircleButton(document.querySelector('#circleButtonIn'));
-        changeElementsTextLanguage(currentLanguage);
-        /*animate panorama button entrance*/
-        $('.panorama-button-in').animate({
-        	opacity: 1
-        }, {duration: 500});
-      }
-    });
-
     $('#lightgallery').on('onBeforeSlide.lg', (e, prevIndex, index) => {
     	/*animate panorama button fadeout*/
     	$('.panorama-button-in').animate({
         	opacity: 0
-        }, {duration: 500});
+        },
+        {
+        	duration: 500, 
+        	complete: () => {
+        		$('.panorama-button-in').remove();
+        	}
+      });
       $('.gallery-thumbitem').removeClass('gallery-thumbitem-active');
       $('.gallery-thumbsgroup').find(`[data-slide-number=${index}]`).addClass('gallery-thumbitem-active');
+    });
+
+    $('#lightgallery').on('onAfterAppendSubHtml.lg', (e, index) => {
+  		if (panoramaUrl) {
+      	if (index === 3) {
+      		/*using polling, there is no neseccary event to put button in right container*/
+      		var interval = setInterval(function() {
+					 if ($('.lg-current .lg-img-wrap').length) {
+					    clearInterval(interval);
+					    $('.lg-current .lg-img-wrap').append(`<div class='panorama-button panorama-button-in custom-subitem'>
+				      		<canvas id='circleButtonIn' height='100' width='100'></canvas>
+				      		<span class='panorama-button-title' data-element-translate-key='panorama-button-in'></span>
+				      	</div>`);
+			      	drawCircleButton(document.querySelector('#circleButtonIn'));
+		        	changeElementsTextLanguage(currentLanguage);
+			        $('#circleButtonIn').click(() => {
+			          panoramaShow();
+			        });
+		        	/*animate panorama button fadein*/
+			        $('.panorama-button-in').animate({
+				        	opacity: 1
+				        },
+				        {
+				        	duration: 500, 
+				        	complete: () => {}
+				      });
+					 }
+					}, 100);	
+      	}
+      }
     });
 
     $('#lightgallery').on('onBeforeClose.lg', () => {

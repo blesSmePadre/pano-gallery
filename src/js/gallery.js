@@ -659,7 +659,8 @@
                 _this.$slide.eq(index).prepend('<div class="lg-video-cont "><div class="lg-video"></div></div>');
                 _this.$el.trigger('hasVideo.lg', [index, _src, _html]);
             } else {
-                _this.$slide.eq(index).prepend('<div class="lg-img-wrap"><img class="lg-object lg-image" src="' + _src + '" /></div>');
+                _this.$slide.eq(index).prepend('<div class="lg-img-wrap">' + 
+                    '<img class="lg-object lg-image" src="' + _src + '" /></div>');
             }
 
             _this.$el.trigger('onAferAppendSlide.lg', [index]);
@@ -1994,8 +1995,13 @@
                     left: -x + 'px',
                     top: -y + 'px'
                 }).attr('data-x', x).attr('data-y', y);
+                $('.lg-current .custom-subitem').css({
+                    left: -x + 'px',
+                    top: -y + 'px'
+                });
             } else {
                 $image.parent().css('transform', 'translate3d(-' + x + 'px, -' + y + 'px, 0)').attr('data-x', x).attr('data-y', y);
+                $('.lg-current .custom-subitem').css('transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
             }
         };
 

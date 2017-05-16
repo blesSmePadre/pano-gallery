@@ -88,7 +88,7 @@
   left: 47%;
   border-radius: 50px;
   transition: transform .3s cubic-bezier(0,0,.25,1) 0s;
-  opacity: 0;
+  opacity: 1;
 }
 
 /* override some light gallery styles */

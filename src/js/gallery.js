@@ -62,7 +62,7 @@
         counter: true,
         appendCounterTo: '.lg-toolbar',
 
-        swipeThreshold: 50,
+        swipeThreshold: 50, 
         enableSwipe: true,
         enableDrag: true,
 
@@ -659,7 +659,7 @@
                 _this.$slide.eq(index).prepend('<div class="lg-video-cont "><div class="lg-video"></div></div>');
                 _this.$el.trigger('hasVideo.lg', [index, _src, _html]);
             } else {
-                _this.$slide.eq(index).prepend('<div class="lg-img-wrap">' + 
+                _this.$slide.eq(index).prepend('<div class="lg-img-wrap">' +
                     '<img class="lg-object lg-image" src="' + _src + '" /></div>');
             }
 

@@ -1,5 +1,5 @@
 const createGallery = (imagesUrl) => {
-		
+
 	const getURLParameter = (param) => {
     var url = window.location.search.substring(1);
     var urlVariables = url.split('&');
@@ -22,7 +22,7 @@ const createGallery = (imagesUrl) => {
   			'opacity': 1
       	 }, {
       	 	duration: 1000
-      	 }   	 
+      	 }
 	  	);
   }
 
@@ -33,8 +33,8 @@ const createGallery = (imagesUrl) => {
       	 	duration: 1000,
       	 	complete: function() {
     	 			$(this).css({'z-index':'1045'})
-      	 	}   	
-      	 }  	  
+      	 	}
+      	 }
 	  	);
   }
 
@@ -117,7 +117,7 @@ const createGallery = (imagesUrl) => {
 	    <a href="${pathsArray[2]}">
 	      <img src="${pathsArray[2]}" />
 	    </a>
-	    <a href="${pathsArray[3]}"  
+	    <a href="${pathsArray[3]}"
 	      data-panorama-src="${pathsArray[4]}">
 	      <img src="${pathsArray[3]}" data-custom-item="true"/>
 	    </a>
@@ -242,6 +242,7 @@ const createGallery = (imagesUrl) => {
 	const getPanoramaTemplate = (currentLanguage) => {
 	  return `<div id="panorama">
 	        <div class="lg-toolbar lg-group panorama-toolbar">
+						<span class="lg-icon panorama-close"></span>
 	          <span class="lg-icon panorama-fullscreen panorama-fullscreen-disabled"></span>
 	          <span class="lg-icon panorama-zoom-in"></span>
 	          <span class="lg-icon panorama-zoom-out"></span>
@@ -299,7 +300,7 @@ const createGallery = (imagesUrl) => {
       hideBarsDelay: 600000,
       enableDrag: false,
       mode: 'lg-fade',
-      speed: 1000,
+      speed: 700,
       //appendSubHtmlTo: '.lg-item'
     });
 
@@ -364,8 +365,7 @@ const createGallery = (imagesUrl) => {
         });
 
         $('.panorama-close').click(() => {
-          $('.lg-outer, .lg-backdrop').hide();
-          $('.lg-close').click();
+          panoramaHide();
         });
       }
 
@@ -405,7 +405,7 @@ const createGallery = (imagesUrl) => {
         	opacity: 0
         },
         {
-        	duration: 500, 
+        	duration: 10,
         	complete: () => {
         		$('.panorama-button-in').remove();
         	}
@@ -430,16 +430,16 @@ const createGallery = (imagesUrl) => {
 			        $('#circleButtonIn').click(() => {
 			          panoramaShow();
 			        });
-		        	/*animate panorama button fadein*/
+
 			        $('.panorama-button-in').animate({
 				        	opacity: 1
 				        },
 				        {
-				        	duration: 500, 
+				        	duration: 100,
 				        	complete: () => {}
 				      });
 					 }
-					}, 100);	
+					}, 100);
       	}
       }
     });
@@ -461,8 +461,8 @@ const createGallery = (imagesUrl) => {
 
     /*start gallery on load*/
     $('#lightgallery a:first-child').click();
-} 
-	
+}
+
 
 window.panoramicgallery = {
 	createGallery: createGallery

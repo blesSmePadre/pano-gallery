@@ -258,37 +258,21 @@ const createGallery = (imagesUrl) => {
 		currentLanguage = 'en';
 
     let pathsArray = [];
-    $.ajax({
-      url: 'public/json/images.json',
-      success: (responseData) => {
-				debugger;
-        pathsArray = responseData.images;
-      },
-      error: () => {
-        throw new Error('Error with request that get images set');
-      },
-      async: false
-    });
 
-    /*some test data
     pathsArray = [
-    	'public/img/test/1.jpg',
-    	'public/img/test/2.jpg',
-    	'public/img/test/3.jpg',
-    	'public/img/test/4.jpg',
-    	'public/img/test/5.jpg',
-    	'public/img/test/6.jpg',
-    	'public/img/test/7.jpg',
-    	'public/img/test/8.jpg',
-    	'public/img/test/9.jpg'
+    	'{%1%}',
+    	'{%2%}',
+    	'{%3%}',
+    	'{%4%}',
+    	'{%5%}',
+    	'{%6%}',
+    	'{%7%}',
+    	'{%8%}',
+    	'{%9%}'
     ];
 
     if (pathsArray === null || pathsArray.length === 0)
       throw new Error('Error. Set of images is empty');
-
-    //pathsArray[4] = '/content/images/panorama.jpg';
-
-		*/
 
     $('body').prepend(createInitialGalleryMarkup(pathsArray));
     let lg = $('#lightgallery').lightGallery({

@@ -332,10 +332,11 @@ const createGallery = (imagesUrl) => {
           'panorama': panoramaUrl,
           'autoLoad': true,
           'showControls': false,
+					'yaw': 270,
           'hotSpots': [
             {
               'pitch': 0,
-              'yaw': 180,
+              'yaw': 90,
               'cssClass': 'panorama-button',
               'scene': 'scene',
               'createTooltipFunc': (hotSpotDiv, args) => {
